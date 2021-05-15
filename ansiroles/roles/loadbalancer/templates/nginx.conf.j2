@@ -1,9 +1,9 @@
 events {}
 http {
     upstream backend {
-         
-          server 172.31.11.3:80;
-         
+         {% for web in groups.webservers %}
+           server {{web}}:8080;
+         {% endfor %}
     }
  server {
    listen 80;
